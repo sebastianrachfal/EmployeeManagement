@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementCL", "EmployeeManagementCL\EmployeeManagementCL.csproj", "{8F127B63-8EEC-484E-AA0D-4E8EC896AFAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementConsoleTestApp", "EmployeeManagementConsoleTestApp\EmployeeManagementConsoleTestApp.csproj", "{70CBD256-3D02-42FE-9542-0717715D708E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementWPF", "EmployeeManagementWPF\EmployeeManagementWPF.csproj", "{9803BCAC-952F-4FDC-AAF6-EE961E7C2EC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{8F127B63-8EEC-484E-AA0D-4E8EC896AFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F127B63-8EEC-484E-AA0D-4E8EC896AFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F127B63-8EEC-484E-AA0D-4E8EC896AFAF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70CBD256-3D02-42FE-9542-0717715D708E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70CBD256-3D02-42FE-9542-0717715D708E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70CBD256-3D02-42FE-9542-0717715D708E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70CBD256-3D02-42FE-9542-0717715D708E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9803BCAC-952F-4FDC-AAF6-EE961E7C2EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9803BCAC-952F-4FDC-AAF6-EE961E7C2EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9803BCAC-952F-4FDC-AAF6-EE961E7C2EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9803BCAC-952F-4FDC-AAF6-EE961E7C2EC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

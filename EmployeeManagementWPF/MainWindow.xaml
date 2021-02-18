@@ -1,0 +1,35 @@
+﻿<Window x:Class="EmployeeManagementWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagementWPF"
+        mc:Ignorable="d"
+        Title="Employee menagement" Height="450" Width="800" Icon="Preppy.ico">
+    <Grid Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+        <TabControl HorizontalAlignment="Stretch" Name="tabControl1" VerticalAlignment="Stretch"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="tabControl1_SelectionChanged" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+            <TabItem Header="Employees" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="16">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid ColumnWidth="*" Name="EmployeeDataGrid" HorizontalAlignment="Stretch"  Margin="10,10,10,10" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" SelectionChanged="HandleDataGridSelectionChanged" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tasks" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="16">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid ColumnWidth="*" Name="TaskDataGrid" HorizontalAlignment="Stretch"  Margin="10,10,10,10" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" SelectionChanged="HandleDataGridSelectionChanged" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Products" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="16">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid ColumnWidth="*" Name="ProductDataGrid" HorizontalAlignment="Stretch"  Margin="10,10,10,10" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" SelectionChanged="HandleDataGridSelectionChanged" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Targets" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="16">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid  ColumnWidth="*" Name="TargetDataGrid" HorizontalAlignment="Stretch"  Margin="10,10,10,10" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" SelectionChanged="HandleDataGridSelectionChanged" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left" Margin="589,2,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" FontSize="14" Height="24"/>
+        <Button x:Name="AddButton" Content="Add Employee" HorizontalAlignment="Left" Margin="669,2,0,0" VerticalAlignment="Top" Width="113" FontSize="14" Height="24"/>
+    </Grid>
+</Window>
