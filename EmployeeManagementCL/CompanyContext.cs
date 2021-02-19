@@ -9,6 +9,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeManagementCL
 {
+    public interface IDbElement
+    {
+        [Key]
+        [Index(IsUnique = true)]
+        int ID { get; set; }
+    }
     public class CompanyContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
@@ -16,17 +22,9 @@ namespace EmployeeManagementCL
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductTarget> Targets { get; set; }
     }
-
-    public enum EmployeeType
+    public class Employee : IDbElement
     {
-        Trainee,
-        Staff,
-        Management
-    }
-    public class Employee
-    {
-        [Key]
-        public int EmployeeID { get; set; }
+        public int ID { get; set; }
         public EmployeeType Type { get; set; }
         [MaxLength(30)]
         public string FirstName { get; set; }
@@ -37,10 +35,9 @@ namespace EmployeeManagementCL
         public List<CompanyTask> Tasks { get; set; }
     }
 
-    public class CompanyTask
+    public class CompanyTask : IDbElement
     {
-        [Key]
-        public int TaskID { get; set; }
+        public int ID { get; set; }
         [MaxLength(100)]
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -49,10 +46,9 @@ namespace EmployeeManagementCL
         public int ProductID { get; set; }
     }
 
-    public class Product
+    public class Product : IDbElement
     {
-        [Key]
-        public int ProductID { get; set; }
+        public int ID { get; set; }
         [MaxLength(30)]
         public string Name { get; set; }
         [MaxLength(100)]
@@ -60,10 +56,9 @@ namespace EmployeeManagementCL
         public int TargetID { get; set; }
     }
     
-    public class ProductTarget
+    public class ProductTarget : IDbElement
     {
-        [Key]
-        public int TargetID { get; set; }
+        public int ID { get; set; }
         [MaxLength(30)]
         public string Name { get; set; }
     }

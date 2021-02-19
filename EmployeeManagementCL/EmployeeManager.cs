@@ -26,5 +26,25 @@ namespace EmployeeManagementCL
             CurrentContext.Products.Load();
             CurrentContext.CompanyTasks.Load();
         }
+
+        public void RemoveItem(DbType type, int index)
+        {
+            switch(type)
+            {
+                case DbType.Employee:
+                    EmployeesDbSet.Remove(EmployeesDbSet.Find(index));
+                    break;
+                case DbType.Task:
+                    TasksDbSet.Remove(TasksDbSet.Find(index));
+                    break;
+                case DbType.Product:
+                    ProductsDbSet.Remove(ProductsDbSet.Find(index));
+                    break;
+                case DbType.Target:
+                    TargetsDbSet.Remove(TargetsDbSet.Find(index));
+                    break;
+            }
+            CurrentContext.SaveChanges();
+        }
     }
 }

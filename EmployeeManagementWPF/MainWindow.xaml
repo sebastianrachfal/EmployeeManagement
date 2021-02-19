@@ -31,5 +31,6 @@
         </TabControl>
         <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left" Margin="589,2,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" FontSize="14" Height="24"/>
         <Button x:Name="AddButton" Content="Add Employee" HorizontalAlignment="Left" Margin="669,2,0,0" VerticalAlignment="Top" Width="113" FontSize="14" Height="24"/>
+        <Button x:Name="RemoveButton" Content="Remove" HorizontalAlignment="Left" Margin="509,2,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" FontSize="14" Height="24" Click="RemoveButton_Click"/>
     </Grid>
 </Window>

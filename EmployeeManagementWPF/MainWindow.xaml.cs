@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,9 @@ namespace EmployeeManagementWPF
 {
     internal struct CurrentSelection
     {
-        DataGrid Grid { get; }
-        int Selected { get; }
-        internal CurrentSelection(DataGrid dg, int item)
+        internal DataGrid Grid { get; }
+        internal int Selected { get; }
+        internal CurrentSelection(DataGrid dg, int item = -1)
         {
             Grid = dg;
             Selected = item;
@@ -33,7 +34,7 @@ namespace EmployeeManagementWPF
     public partial class MainWindow : Window
     {
         private EmployeeManager Manager;
-        private CurrentSelection Selection;
+        private CurrentSelection? Selection;
         private int LastIndex;
         public MainWindow()
         {
@@ -71,7 +72,9 @@ namespace EmployeeManagementWPF
                             AddButton.Content = "Add Target";
                             break;
                     }
-                    EditButton.IsEnabled = false;
+                    Selection = new CurrentSelection(GetDataGridFromTabIndex(index));
+                    EditButton.IsEnabled = RemoveButton.IsEnabled = false;
+                    Selection = null;
                 }
                 LastIndex = index;
             }
@@ -80,9 +83,39 @@ namespace EmployeeManagementWPF
         {
             if (sender != null)
             {
-                var dg = (DataGrid)sender;
-                Selection = new CurrentSelection(dg, dg.SelectedIndex);
-                EditButton.IsEnabled = true;
+                var grid = (DataGrid)sender;
+                Selection = new CurrentSelection(grid, grid.SelectedIndex);
+                EditButton.IsEnabled = RemoveButton.IsEnabled = true;
+            }
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(Selection != null)
+            {
+                var selection = ((CurrentSelection)Selection);
+                Manager.RemoveItem(GetDbTypeFromName(selection.Grid.Name), ((IDbElement)selection.Grid.Items.GetItemAt(selection.Selected)).ID);
+            }
+        }
+
+        private DataGrid GetDataGridFromTabIndex(int index)
+        {
+            switch(index)
+            {
+                case 1: return TaskDataGrid;
+                case 2: return ProductDataGrid;
+                case 3: return TargetDataGrid;
+                default: return EmployeeDataGrid;
+            }
+        }
+        private DbType GetDbTypeFromName(string name)
+        {
+            switch(name)
+            {
+                case "TaskDataGrid": return DbType.Task;
+                case "ProductDataGrid": return DbType.Product;
+                case "TargetDataGrid": return DbType.Target;
+                default: return DbType.Employee;
             }
         }
     }
