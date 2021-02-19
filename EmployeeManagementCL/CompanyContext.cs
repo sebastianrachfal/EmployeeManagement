@@ -61,5 +61,13 @@ namespace EmployeeManagementCL
         public int ID { get; set; }
         [MaxLength(30)]
         public string Name { get; set; }
+        public ProductTarget() { }
+        public ProductTarget(string name)
+        {
+            if (name.Length == 0) throw new ArgumentException("Name can't be empty");
+            if (name.Length > 30) throw new ArgumentException("Name length can't exceed 30");
+
+            Name = name;
+        }
     }
 }

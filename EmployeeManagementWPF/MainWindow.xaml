@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementWPF"
         mc:Ignorable="d"
-        Title="Employee menagement" Height="450" Width="800" Icon="Preppy.ico">
+        Title="Employee management" Height="450" Width="800" Icon="Preppy.ico">
     <Grid Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
-        <TabControl HorizontalAlignment="Stretch" Name="tabControl1" VerticalAlignment="Stretch"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="tabControl1_SelectionChanged" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+        <TabControl Margin="5,15,5,5" HorizontalAlignment="Stretch" Name="tabControl1" VerticalAlignment="Stretch"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="tabControl1_SelectionChanged" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
             <TabItem Header="Employees" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="16">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid ColumnWidth="*" Name="EmployeeDataGrid" HorizontalAlignment="Stretch"  Margin="10,10,10,10" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" SelectionChanged="HandleDataGridSelectionChanged" />
@@ -29,8 +29,8 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left" Margin="589,2,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" FontSize="14" Height="24"/>
-        <Button x:Name="AddButton" Content="Add Employee" HorizontalAlignment="Left" Margin="669,2,0,0" VerticalAlignment="Top" Width="113" FontSize="14" Height="24"/>
-        <Button x:Name="RemoveButton" Content="Remove" HorizontalAlignment="Left" Margin="509,2,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" FontSize="14" Height="24" Click="RemoveButton_Click"/>
+        <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left" Margin="385,9,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" FontSize="14" Height="24" Click="EditButton_Click"/>
+        <Button x:Name="AddButton" Content="Add Employee" HorizontalAlignment="Left" Margin="465,9,0,0" VerticalAlignment="Top" Width="113" FontSize="14" Height="24" Click="AddButton_Click"/>
+        <Button x:Name="RemoveButton" Content="Remove" HorizontalAlignment="Left" Margin="305,9,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" FontSize="14" Height="24" Click="RemoveButton_Click" RenderTransformOrigin="0.476,0.931"/>
     </Grid>
 </Window>

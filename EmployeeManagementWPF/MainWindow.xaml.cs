@@ -72,9 +72,8 @@ namespace EmployeeManagementWPF
                             AddButton.Content = "Add Target";
                             break;
                     }
+                    ClearSelectionAll();
                     Selection = new CurrentSelection(GetDataGridFromTabIndex(index));
-                    EditButton.IsEnabled = RemoveButton.IsEnabled = false;
-                    Selection = null;
                 }
                 LastIndex = index;
             }
@@ -91,16 +90,52 @@ namespace EmployeeManagementWPF
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            if(Selection != null)
+            if (Selection != null)
             {
                 var selection = ((CurrentSelection)Selection);
                 Manager.RemoveItem(GetDbTypeFromName(selection.Grid.Name), ((IDbElement)selection.Grid.Items.GetItemAt(selection.Selected)).ID);
+                ClearSelectionAll();
             }
         }
-
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Selection != null)
+            {
+                var selection = ((CurrentSelection)Selection);
+                switch (GetDbTypeFromName(selection.Grid.Name))
+                {
+                    case DbType.Target:
+                        var curWindow = new TargetWindow();
+                        if (curWindow.ShowDialog() == true && curWindow.Data != null)
+                            Manager.AddItem(DbType.Target, curWindow.Data);
+                        break;
+                }
+                ClearSelectionAll();
+            }
+        }
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Selection != null)
+            {
+                var selection = ((CurrentSelection)Selection);
+                var editedItem = (IDbElement)selection.Grid.Items.GetItemAt(selection.Selected);
+                switch (GetDbTypeFromName(selection.Grid.Name))
+                {
+                    case DbType.Target:
+                        var curWindow = new TargetWindow((ProductTarget)editedItem);
+                        if (curWindow.ShowDialog() == true && curWindow.Data != null)
+                            Manager.EditItem(DbType.Target, editedItem.ID, curWindow.Data);
+                        TargetDataGrid.ItemsSource = null;
+                        break;
+                }
+                ClearSelectionAll();
+                InitializeDataGrids();
+            }
+            
+        }
         private DataGrid GetDataGridFromTabIndex(int index)
         {
-            switch(index)
+            switch (index)
             {
                 case 1: return TaskDataGrid;
                 case 2: return ProductDataGrid;
@@ -110,13 +145,22 @@ namespace EmployeeManagementWPF
         }
         private DbType GetDbTypeFromName(string name)
         {
-            switch(name)
+            switch (name)
             {
                 case "TaskDataGrid": return DbType.Task;
                 case "ProductDataGrid": return DbType.Product;
                 case "TargetDataGrid": return DbType.Target;
                 default: return DbType.Employee;
             }
+        }
+        private void ClearSelectionAll()
+        {
+            if(Selection != null)
+            {
+                ((CurrentSelection)Selection).Grid.UnselectAll();
+                Selection = null;
+            }
+            EditButton.IsEnabled = RemoveButton.IsEnabled = false;
         }
     }
 }
