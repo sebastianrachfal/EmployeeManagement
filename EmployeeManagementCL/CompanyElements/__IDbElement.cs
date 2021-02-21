@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeManagementCL
 {
+    /// <summary>
+    /// Interface for types of elements in database
+    /// </summary>
     public interface IDbElement
     {
         [Key]

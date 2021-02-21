@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementWPF"
         mc:Ignorable="d"
-        Title="Employee management" Height="450" Width="800" Icon="Preppy.ico">
+        Title="Employee management" Height="450" Width="800" Icon="Icons/employee.ico">
     <Grid Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
         <TabControl Margin="5,15,5,5" HorizontalAlignment="Stretch" Name="tabControl1" VerticalAlignment="Stretch"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="tabControl1_SelectionChanged" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
             <TabItem Header="Employees" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="16">

@@ -1,0 +1,29 @@
+﻿<Window x:Class="EmployeeManagementWPF.TaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagementWPF"
+        mc:Ignorable="d"
+        Title="Task" ResizeMode="NoResize" Height="232" Width="440" Icon="../Icons/task.ico" >
+    <Grid>
+        <Label Content="Deadline:" HorizontalAlignment="Left" Margin="228,11,0,0" VerticalAlignment="Top" Width="103"/>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="336,161,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
+        <Button x:Name="AcceptButton" Content="Ok" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top" Width="75" Click="AcceptButton_Click"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="103"/>
+        <TextBox TextWrapping="Wrap"
+  AcceptsReturn="True"
+  VerticalScrollBarVisibility="Visible" x:Name="DescriptionInput" HorizontalAlignment="Left" Height="61" Margin="118,41,0,0" VerticalAlignment="Top" Width="293"/>
+        <Label Content="Product:" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Width="103"/>
+        <ComboBox x:Name="ProductInput" HorizontalAlignment="Left" Margin="118,108,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="ClearProductButton" Content="X" HorizontalAlignment="Left" Margin="243,108,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="ClearProductButton_Click"/>
+        <Label Content="Finished:" HorizontalAlignment="Left" Margin="331,106,0,0" VerticalAlignment="Top" Width="103"/>
+        <CheckBox x:Name="FinishedInput" Content="" HorizontalAlignment="Left" Margin="391,112,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="0.407,0.371"/>
+        <DatePicker x:Name="DeadlineInput" HorizontalAlignment="Left" Margin="291,12,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Created at:" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="103"/>
+        <DatePicker x:Name="CreatedAtInput" HorizontalAlignment="Left" Margin="118,157,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.165,0.458"/>
+        <TextBox x:Name="NameInput" HorizontalAlignment="Left" Height="23" Margin="118,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110"/>
+
+    </Grid>
+</Window>

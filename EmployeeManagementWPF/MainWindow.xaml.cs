@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using EmployeeManagementCL;
+
 namespace EmployeeManagementWPF
 {
     internal struct CurrentSelection
@@ -29,18 +16,22 @@ namespace EmployeeManagementWPF
 
     }
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// MainWindow.xaml logic
     /// </summary>
     public partial class MainWindow : Window
     {
         private EmployeeManager Manager;
         private CurrentSelection? Selection;
         private int LastIndex;
-        public MainWindow()
+        internal MainWindow()
         {
             InitializeComponent();
             Manager = new EmployeeManager();
+            ClearSelectionAll();
             InitializeDataGrids();
+
+            Selection = new CurrentSelection(EmployeeDataGrid);
+            LastIndex = 0;
         }
         private void InitializeDataGrids()
         {
@@ -83,8 +74,11 @@ namespace EmployeeManagementWPF
             if (sender != null)
             {
                 var grid = (DataGrid)sender;
-                Selection = new CurrentSelection(grid, grid.SelectedIndex);
-                EditButton.IsEnabled = RemoveButton.IsEnabled = true;
+                if(grid.SelectedIndex != -1)
+                {
+                    Selection = new CurrentSelection(grid, grid.SelectedIndex);
+                    EditButton.IsEnabled = RemoveButton.IsEnabled = true;
+                }
             }
         }
 
@@ -101,14 +95,28 @@ namespace EmployeeManagementWPF
         {
             if (Selection != null)
             {
+                dynamic curWindow = null;
                 var selection = ((CurrentSelection)Selection);
-                switch (GetDbTypeFromName(selection.Grid.Name))
+                DbType curDT = GetDbTypeFromName(selection.Grid.Name);
+                switch (curDT)
                 {
                     case DbType.Target:
-                        var curWindow = new TargetWindow();
-                        if (curWindow.ShowDialog() == true && curWindow.Data != null)
-                            Manager.AddItem(DbType.Target, curWindow.Data);
+                        curWindow = new TargetWindow();
                         break;
+                    case DbType.Product:
+                        curWindow = new ProductWindow(Manager.GetAllItemsListOf<ProductTarget>());
+                        break;
+                    case DbType.Task:
+                        curWindow = new TaskWindow(Manager.GetAllItemsListOf<Product>());
+                        break;
+                    case DbType.Employee:
+                        curWindow = new EmployeeWindow(Manager.GetAllItemsListOf<CompanyTask>());
+                        break;
+                }
+                if(curWindow != null)
+                {
+                    if (curWindow.ShowDialog() == true && curWindow.Data != null)
+                        Manager.AddItem(curDT, curWindow.Data);
                 }
                 ClearSelectionAll();
             }
@@ -119,19 +127,38 @@ namespace EmployeeManagementWPF
             {
                 var selection = ((CurrentSelection)Selection);
                 var editedItem = (IDbElement)selection.Grid.Items.GetItemAt(selection.Selected);
-                switch (GetDbTypeFromName(selection.Grid.Name))
+                DataGrid curDG = null;
+                DbType curDT = GetDbTypeFromName(selection.Grid.Name);
+                dynamic curWindow = null;
+                switch (curDT)
                 {
                     case DbType.Target:
-                        var curWindow = new TargetWindow((ProductTarget)editedItem);
-                        if (curWindow.ShowDialog() == true && curWindow.Data != null)
-                            Manager.EditItem(DbType.Target, editedItem.ID, curWindow.Data);
-                        TargetDataGrid.ItemsSource = null;
+                        curWindow = new TargetWindow((ProductTarget)editedItem);
+                        curDG = TargetDataGrid;
+                        break;
+                    case DbType.Product:
+                        curWindow = new ProductWindow(Manager.GetAllItemsListOf<ProductTarget>(), (Product)editedItem);
+                        curDG = ProductDataGrid;
+                        break;
+                    case DbType.Task:
+                        curWindow = new TaskWindow(Manager.GetAllItemsListOf<Product>(), (CompanyTask)editedItem);
+                        curDG = TaskDataGrid;
+                        break;
+                    case DbType.Employee:
+                        curWindow = new EmployeeWindow(Manager.GetAllItemsListOf<CompanyTask>(), (Employee)editedItem);
+                        curDG = EmployeeDataGrid;
                         break;
                 }
-                ClearSelectionAll();
-                InitializeDataGrids();
+                if (curWindow != null) {
+                    if (curWindow.ShowDialog() == true && curWindow.Data != null && ((curWindow.Data.ID = editedItem.ID) == editedItem.ID))
+                    {
+                        Manager.EditItem((DbType)curDT, curWindow.Data);
+                        curDG.ItemsSource = null; // I don't like this, but for some reason it doesn't work without it
+                        ClearSelectionAll();
+                        InitializeDataGrids(); // Reset DataGrids
+                    }
+                }
             }
-            
         }
         private DataGrid GetDataGridFromTabIndex(int index)
         {
@@ -157,8 +184,10 @@ namespace EmployeeManagementWPF
         {
             if(Selection != null)
             {
-                ((CurrentSelection)Selection).Grid.UnselectAll();
-                Selection = null;
+                var s = (CurrentSelection)Selection;
+                s.Grid.UnselectAll();
+                if(s.Selected != -1)
+                    Selection = null;
             }
             EditButton.IsEnabled = RemoveButton.IsEnabled = false;
         }

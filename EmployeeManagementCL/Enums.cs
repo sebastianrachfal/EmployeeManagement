@@ -1,5 +1,8 @@
 ﻿namespace EmployeeManagementCL
 {
+    /// <summary>
+    /// Type of database
+    /// </summary>
     public enum DbType
     {
         Employee,
@@ -7,6 +10,9 @@
         Product,
         Target
     }
+    /// <summary>
+    /// Type of employee
+    /// </summary>
     public enum EmployeeType
     {
         Trainee,

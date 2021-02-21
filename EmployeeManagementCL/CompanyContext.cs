@@ -2,11 +2,11 @@
 
 namespace EmployeeManagementCL
 {
-    public class CompanyContext : DbContext
+    internal class CompanyContext : DbContext
     {
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<CompanyTask> CompanyTasks { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductTarget> Targets { get; set; }
+        internal DbSet<Employee> Employees { get; set; }
+        internal DbSet<CompanyTask> CompanyTasks { get; set; }
+        internal DbSet<Product> Products { get; set; }
+        internal DbSet<ProductTarget> Targets { get; set; }
     }
 }

@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagementWPF"
         mc:Ignorable="d"
-        Title="Product target" Height="222.273" Width="429.091">
+        Title="Product target" ResizeMode="NoResize" Height="90" Width="440" Icon="../Icons/target.ico" >
     <Grid>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="103"/>
         <TextBox x:Name="NameInput" HorizontalAlignment="Left" Height="23" Margin="118,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="336,161,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
-        <Button x:Name="AcceptButton" Content="Ok" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top" Width="75" Click="AcceptButton_Click"/>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="336,13,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click" Height="23"/>
+        <Button x:Name="AcceptButton" Content="Ok" HorizontalAlignment="Left" Margin="256,13,0,0" VerticalAlignment="Top" Width="75" Click="AcceptButton_Click" Height="23"/>
 
     </Grid>
 </Window>

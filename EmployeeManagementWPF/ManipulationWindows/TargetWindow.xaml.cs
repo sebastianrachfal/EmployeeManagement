@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using EmployeeManagementCL;
 
 namespace EmployeeManagementWPF
 {
     /// <summary>
-    /// Logika interakcji dla klasy TargetWindow.xaml
+    /// TargetWindow.xaml logic
     /// </summary>
     public partial class TargetWindow : Window
     {
-        public ProductTarget Data;
-        public TargetWindow(ProductTarget pt = null)
+        internal ProductTarget Data;
+        internal TargetWindow(ProductTarget pt = null)
         {
             InitializeComponent();
             if(pt != null)
@@ -41,14 +30,14 @@ namespace EmployeeManagementWPF
         {
             try
             {
-                Data = new ProductTarget(NameInput.Text);
+                Data = new ProductTarget(NameInput.Text.Trim());
                 DialogResult = true;
                 Close();
             } catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                WarningBox.Show(ex.Message);
             }
-            
+
         }
     }
 }
