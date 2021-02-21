@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyElements\CompanyTask.cs" />
+    <Compile Include="CompanyElements\__IDbElement.cs" />
+    <Compile Include="CompanyElements\Product.cs" />
+    <Compile Include="CompanyElements\ProductTarget.cs" />
+    <Compile Include="CompanyElements\Employee.cs" />
+    <Compile Include="CompanyElements\__ElementChecks.cs" />
     <Compile Include="EmployeeManager.cs" />
     <Compile Include="CompanyContext.cs" />
     <Compile Include="Enums.cs" />
