@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using EmployeeManagementCL;
 
@@ -23,15 +24,22 @@ namespace EmployeeManagementWPF
         private EmployeeManager Manager;
         private CurrentSelection? Selection;
         private int LastIndex;
-        internal MainWindow()
+        public MainWindow()
         {
-            InitializeComponent();
-            Manager = new EmployeeManager();
-            ClearSelectionAll();
-            InitializeDataGrids();
+            try
+            {
+                InitializeComponent();
+                Manager = new EmployeeManager();
+                ClearSelectionAll();
+                InitializeDataGrids();
 
-            Selection = new CurrentSelection(EmployeeDataGrid);
-            LastIndex = 0;
+                Selection = new CurrentSelection(EmployeeDataGrid);
+                LastIndex = 0;
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
         }
         private void InitializeDataGrids()
         {

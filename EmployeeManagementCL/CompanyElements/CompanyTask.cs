@@ -22,11 +22,11 @@ namespace EmployeeManagementCL
         /// <summary>
         /// Creation date of a task
         /// </summary>
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         /// <summary>
         /// Deadline of a task
         /// </summary>
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         /// <summary>
         /// Status of a task
         /// </summary>

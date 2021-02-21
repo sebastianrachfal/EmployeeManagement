@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeManagementCL
 {
@@ -11,7 +12,8 @@ namespace EmployeeManagementCL
         /// <summary>
         /// Type of an employee
         /// </summary>
-        public EmployeeType Type { get; set; }
+        [NotMapped]
+        public EmployeeType? Type { get; set; }
         /// <summary>
         /// First name of an employee
         /// </summary>

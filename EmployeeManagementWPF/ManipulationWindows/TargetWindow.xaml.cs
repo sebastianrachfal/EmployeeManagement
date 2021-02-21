@@ -10,7 +10,7 @@ namespace EmployeeManagementWPF
     public partial class TargetWindow : Window
     {
         internal ProductTarget Data;
-        internal TargetWindow(ProductTarget pt = null)
+        public TargetWindow(ProductTarget pt = null)
         {
             InitializeComponent();
             if(pt != null)

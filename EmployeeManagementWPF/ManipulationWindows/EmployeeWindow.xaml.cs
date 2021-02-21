@@ -13,7 +13,7 @@ namespace EmployeeManagementWPF
     {
         internal Employee Data;
         private IList<CompanyTask> TaskList;
-        internal EmployeeWindow(IList<CompanyTask> pl, Employee e = null)
+        public EmployeeWindow(IList<CompanyTask> pl, Employee e = null)
         {
             InitializeComponent();
             TaskList = pl;

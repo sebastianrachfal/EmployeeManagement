@@ -13,7 +13,7 @@ namespace EmployeeManagementWPF
     {
         internal Product Data;
         private IList<ProductTarget> TargetList;
-        internal ProductWindow(IList<ProductTarget> ptl, Product p = null)
+        public ProductWindow(IList<ProductTarget> ptl, Product p = null)
         {
             InitializeComponent();
             TargetList = ptl;
